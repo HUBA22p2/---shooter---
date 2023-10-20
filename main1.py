@@ -83,18 +83,18 @@ class Bullet(GameSprite):
             self.kill()
 
 # створення об'єктів            
-player = Player("rocket.png",W/2,H-100,80, 100, 6)
+player = Player("rocket.png",W/2,H-100,100, 100, 6)
 # створення групи спрайтів
 monsters = sprite.Group()
 bullets = sprite.Group()
 asteroids = sprite.Group()
 
 for i in range(5):# створюємо ворогів і додаємо в групу
-    monster = Enemy('ufo.png', randint(0, W-80), randint(-50, 0), 80, 50, randint(1, 3))
+    monster = Enemy('ufo.png', randint(0, W-80), randint(-50, 0), 80, 80, randint(1, 3))
     monsters.add(monster)
 
 for i in range(1):
-    asteroid = Asteroid('asteroid.png', randint(0, W-80), randint(-50, 0), 80, 50, randint(1, 3))
+    asteroid = Asteroid('asteroid.png', randint(0, W-80), randint(-50, 0), 100, 100, randint(1, 3))
     asteroids.add(asteroid)
 
 game = True
@@ -157,13 +157,13 @@ while game:# ігровий цикл
 
         if sprite.spritecollide(player, monsters, True):
             life -= 1
-            monster = Enemy('ufo.png', randint(0, W-80), -50, 80, 50, randint(1, 3))
+            monster = Enemy('ufo.png', randint(0, W-80), -50, 80, 80, randint(1, 3))
             monsters.add(monster)
 
         collides = sprite.groupcollide(bullets, monsters, True, True)
         for col in collides:
             killed += 1
-            monster = Enemy('ufo.png', randint(0, W-80), -50, 80, 50, randint(1, 3))
+            monster = Enemy('ufo.png', randint(0, W-80), -50, 80, 80, randint(1, 3))
             monsters.add(monster)
             
         if killed >= 100:
@@ -181,7 +181,7 @@ while game:# ігровий цикл
 
         if sprite.spritecollide(player, asteroids, True):
             life -= 5
-            asteroid = Asteroid("asteroid.png", randint(0, W - 80), randint(-50, 0), 80, 50, randint(1, 3))
+            asteroid = Asteroid("asteroid.png", randint(0, W - 80), randint(-50, 0), 100, 100, randint(1, 3))
             asteroids.add(asteroid)
 
     else:
@@ -195,7 +195,7 @@ while game:# ігровий цикл
             for b in bullets:
                 b.kill()
             for i in range(5):
-                monster = Enemy('ufo.png', randint(0, W-80), -50, 80, 50, randint(1, 3))
+                monster = Enemy('ufo.png', randint(0, W-80), -50, 80, 80, randint(1, 3))
                 monsters.add(monster)
             finish = False
 
